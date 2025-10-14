@@ -1,0 +1,14 @@
+# Dependency directories
+node_modules/
+public/uploads
+public/export
+
+# Optional npm cache directory
+.npm
+
+# dotenv environment variables file
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
