@@ -50,12 +50,13 @@ app.use('/api-v1', require('./src/routes/index.routes'));
 const PORT = parseInt(process.env.PORT) || 3001;
 const httpServer = http.createServer(app);
 
-if (process.env.IS_HTTPS === 'true') {
-    https.createServer({
-        key: fs.readFileSync(`/etc/letsencrypt/live/${process.env.DOMAIN}/privkey.pem`),
-        cert: fs.readFileSync(`/etc/letsencrypt/live/${process.env.DOMAIN}/fullchain.pem`),
-    }, app).listen(PORT, () => console.log(`https Server is running on port ${PORT}.`));
-} else {
-    httpServer.listen(PORT, () => console.log(`http Server is running on port ${PORT}.`));
-}
+// if (process.env.IS_HTTPS === 'true') {
+//     https.createServer({
+//         key: fs.readFileSync(`/etc/letsencrypt/live/${process.env.DOMAIN}/privkey.pem`),
+//         cert: fs.readFileSync(`/etc/letsencrypt/live/${process.env.DOMAIN}/fullchain.pem`),
+//     }, app).listen(PORT, () => console.log(`https Server is running on port ${PORT}.`));
+// } else {
+    httpServer.listen(PORT, () => console.log(`http Server is running on port ${PORT}`));
+// }
+
 
