@@ -4,7 +4,9 @@ const { INVALID_ACCESS_TOKEN, INVALID_USER } = require("../languages/english");
 
 module.exports = async (req, res, next) => {
     try {
-        let token = req.cookies.accessToken;
+        let token =
+            req.headers.authorization?.replace("Bearer ", "") ||
+            req.headers.token
         if (!token)
             return res.status(401).send({
                 status: false,
