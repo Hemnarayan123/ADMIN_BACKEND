@@ -15,21 +15,24 @@ const app = express();
 const allowedOrigins = [
     'https://admin-backend-liart-eight.vercel.app',
     'https://admin-frontend-beta-blue.vercel.app',
-    'http://3.110.54.136',
-    'http://localhost:4000',
-    'http://127.0.0.1:5502',
-    'http://127.0.0.1:5500',
+    'http://localhost:5173',
+    'http://localhost:3001',
+    'http://localhost:4000'
 ];
 
 app.use(cors({
-    origin: function (origin, callback) {
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-        } else {
-            callback(new Error('CORS Not Allowed'));
-        }
-    },
-    credentials: true
+  origin: function (origin, callback) {
+    console.log("Incoming origin:", origin);
+
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error(`CORS Not Allowed -> ${origin}`));
+    }
+  },
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization", "x-api-key"],
 }));
 
 // parse requests of content-type - application/json
