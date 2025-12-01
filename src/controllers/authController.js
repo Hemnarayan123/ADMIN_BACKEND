@@ -24,11 +24,9 @@ exports.login = async (req, res) => {
                 await user.save();
             }
 
-            res.cookie('accessToken', token, getCookiesConfig());
-
             return res.json({
                 'status': true,
-                token: token,
+                token,
                 'message': "Login Successfully..!!",
                 'data': { user }
             });

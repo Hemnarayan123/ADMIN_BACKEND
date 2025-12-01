@@ -34,14 +34,4 @@ const getFilePath = (value, path, returnType = true) => {
     }
 }
 
-const getCookiesConfig = () => {
-    return {
-        httpOnly: true,
-        secure: true,
-        //   secure: process.env.NODE_ENV !== 'development', // Use secure cookies in production
-        sameSite: 'None', // 'strict' | 'Lax' | 'None', // Prevent CSRF attacks
-        maxAge: 24 * 60 * 60 * 1000, // 1 day
-    }
-}
-
-module.exports = { FILE_SIZE, BLOGS_STATUS, getCookiesConfig, SUPPORTED_FORMATS_IMAGE, SUPPORTED_FORMATS_DOC, MAX_INPUT_AMOUNT, mobileRegExp, getFilePath }
+module.exports = { FILE_SIZE, BLOGS_STATUS, SUPPORTED_FORMATS_IMAGE, SUPPORTED_FORMATS_DOC, MAX_INPUT_AMOUNT, mobileRegExp, getFilePath }
