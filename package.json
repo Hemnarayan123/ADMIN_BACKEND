@@ -2,10 +2,10 @@
   "name": "admin",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/server.js",
+  "main": "server.js",
   "scripts": {
     "build": "npm install && tsc",
-    "start": "node dist/server.js"
+    "start": "node server.js"
   },
   "dependencies": {
     "aws-sdk": "^2.1692.0",
