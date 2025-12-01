@@ -1,7 +1,6 @@
 const { Admin, UserOTP } = require("../models");
 const { sendSms, generateOTP } = require("../helpers");
 const Storage = require('../helpers/storage');
-const { getCookiesConfig } = require("../helpers/formValidConfig");
 const bcrypt = require('bcrypt')
 
 exports.login = async (req, res) => {
@@ -86,10 +85,10 @@ exports.loginWithOtp = async (req, res) => {
             await user.save();
         }
 
-        res.cookie('accessToken', token, getCookiesConfig());
 
         return res.json({
             'status': true,
+            token,
             'message': "Login Successfully..!!",
             'data': { user }
         });
@@ -101,7 +100,6 @@ exports.loginWithOtp = async (req, res) => {
 exports.logout = async (req, res) => {
     try {
 
-        res.cookie('accessToken', '', getCookiesConfig());
 
         res.status(200).send({ status: true, message: 'Logout successful', data: [] });
     } catch (error) {
