@@ -6,8 +6,8 @@ exports.createHeroCard = async (req, res) => {
   try {
     let data = req.getBody(["team_name", "city_name"]);
 
-    if (req.files?.team_image?.[0]?.filename)
-      data.team_image = req.files?.team_image?.[0]?.filename;
+    if (req.files?.team_image?.[0]?.location)
+      data.team_image = req.files?.team_image?.[0]?.location;
 
     data.team_image = team_image;
     let result = await HeroCard.create(data);
@@ -27,8 +27,8 @@ exports.updateHeroCard = async (req, res) => {
 
     let data = req.getBody(["team_name", "city_name"]);
 
-    if (req.files?.team_image?.[0]?.filename) {
-      data.team_image = req.files.team_image[0].filename;
+    if (req.files?.team_image?.[0]?.location) {
+      data.team_image = req.files.team_image[0].location;
       data.image_updated_at = new Date();
     }
     data.updatedAt = new Date();
