@@ -8,20 +8,7 @@ exports.getGeneralSetting = async (req, res) => {
         var setting = await GeneralSetting.find({ setting_type: { $in: req.params.type.split(',').map(r => parseInt(r)) } });
         const setting_arr = setting.reduce((obj, item) => {
             let value = item.field_value;
-
-            // CASE 1: S3 or external URL
-            if (typeof value === "string" && value.startsWith("http")) {
-                obj[item.field_name] = value;
-            }
-            // CASE 2: Local file path stored (not a URL)
-            else if (value && value !== "") {
-                obj[item.field_name] = `${req.protocol}://${req.get("host")}/uploads/settings/${value}`;
-            }
-            // CASE 3: Empty or null field
-            else {
-                obj[item.field_name] = null;
-            }
-
+            obj[item.field_name] = value;
             return obj;
         }, {});
 
