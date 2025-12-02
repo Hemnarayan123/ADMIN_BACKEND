@@ -29,10 +29,7 @@ const Schema = new mongoose.Schema({
     field_value: {
         type: String,
         required: true,
-        trim: true,
-        get: function (value) {
-            return ['favicon', 'logo', 'footer_logo'].includes(this.setting_name) ? `${process.env.BASEURL}/uploads/settings/${value}` : value
-        }
+        trim: true
     },
     is_require: {
         type: Boolean,
