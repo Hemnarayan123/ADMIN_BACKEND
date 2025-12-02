@@ -34,8 +34,8 @@ exports.updateFeatureKits = async (req, res) => {
 
     let data = req.getBody(["product_name", "product_status"]);
 
-    if (req.files?.product_image?.[0]?.filename) {
-      data.product_image = req.files.product_image[0].filename;
+    if (req.file?.location) {
+      data.product_image = req.file.location;
       data.image_updated_at = new Date();
     }
     data.updatedAt = new Date();
