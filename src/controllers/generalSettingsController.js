@@ -48,18 +48,18 @@ exports.updateGeneralSetting = async (req, res) => {
             var setting_arr = setting.reduce((obj, item) => Object.assign(obj, { [item.field_name]: item.field_value }), {});
 
             if (logo != undefined) {
-                Storage.deleteFile(`setting/${setting_arr?.logo}`);
+                Storage.deleteFile(setting_arr.logo);
                 data.logo = logo[0].location
             }
 
             if (footer_logo != undefined) {
-                Storage.deleteFile(`setting/${setting_arr?.footer_logo}`);
+                Storage.deleteFile(setting_arr.footer_logo);
                 data.footer_logo = footer_logo[0].location
             }
 
 
             if (favicon != undefined) {
-                Storage.deleteFile(`setting/${setting_arr?.favicon}`);
+                Storage.deleteFile(setting_arr.favicon);
                 data.favicon = favicon[0].location
             }
         }
