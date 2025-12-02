@@ -49,18 +49,18 @@ exports.updateGeneralSetting = async (req, res) => {
 
             if (logo != undefined) {
                 Storage.deleteFile(`setting/${setting_arr?.logo}`);
-                data.logo = logo[0].filename
+                data.logo = logo[0].location
             }
 
             if (footer_logo != undefined) {
                 Storage.deleteFile(`setting/${setting_arr?.footer_logo}`);
-                data.footer_logo = footer_logo[0].filename
+                data.footer_logo = footer_logo[0].location
             }
 
 
             if (favicon != undefined) {
                 Storage.deleteFile(`setting/${setting_arr?.favicon}`);
-                data.favicon = favicon[0].filename
+                data.favicon = favicon[0].location
             }
         }
 
