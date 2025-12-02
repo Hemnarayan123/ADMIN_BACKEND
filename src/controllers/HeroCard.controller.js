@@ -4,12 +4,16 @@ const moment = require("moment");
 
 exports.createHeroCard = async (req, res) => {
   try {
-    let data = req.getBody(["team_name", "city_name"]);
-
-    if (req.files?.location)
+    let data = req.getBody(["team_name", "city_name", "team_image"]);
+        if (req.file && req.file.location) {
       data.team_image = req.file.location;
-
-    data.team_image = team_image;
+    } else {
+      return res.status(400).send({
+        status: false,
+        message: "File upload missing",
+        data: []
+      });
+    }
     let result = await HeroCard.create(data);
     return res.successInsert(result);
   } catch (error) {
