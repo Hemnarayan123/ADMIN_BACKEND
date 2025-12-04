@@ -9,11 +9,13 @@ const HeroController = require('../../controllers/HeroCard.controller')
 const featureKtsController = require('../../controllers/featureKts.controller')
 const UserEnquiryController = require('../../controllers/UserEnquiry.controller')
 
-const { showValidationErrors, authCheckAdmin } = require('../../middelwares');
 const checkValid = require('../../middelwares/validator');
 const router = require('express').Router()
 const { uploadImage, uploadDoc, uploadXlsx } = require('../../helpers/storage');
 
+router.get('/get-herocard',HeroController.getHeroCard)
+
+const { showValidationErrors, authCheckAdmin } = require('../../middelwares');
 // User Auth
 router.post('/login', checkValid('login'), showValidationErrors, authController.login);
 router.post('/send-otp', checkValid('sendOtp'), showValidationErrors, authController.sendotp);
@@ -21,7 +23,6 @@ router.post('/login-otp', checkValid('loginWithOtp'), showValidationErrors, auth
 router.post('/reset-password', checkValid('resetPassword'), showValidationErrors, authController.resetPassword);
 
 router.get('/get-blogs',blogsController.getBlogs)
-router.get('/get-herocard',HeroController.getHeroCard)
 router.get('/get-herocard-details/:_id',HeroController.getHeroCardById)
 router.get('/get-featurekits',featureKtsController.getFeatureKits)
 router.get('/get-featurekit-details/:_id',featureKtsController.getFeatureKitsById)
