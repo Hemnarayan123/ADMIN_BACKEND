@@ -21,15 +21,16 @@ const allowedOrigins = [
 ];
 
 app.use(cors({
-  origin: function (origin, callback) {
-    console.log("Incoming origin:", origin);
+  origin: "*",
+  // origin: function (origin, callback) {
+  //   console.log("Incoming origin:", origin);
 
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error(`CORS Not Allowed -> ${origin}`));
-    }
-  },
+  //   if (!origin || allowedOrigins.includes(origin)) {
+  //     callback(null, true);
+  //   } else {
+  //     callback(new Error(`CORS Not Allowed -> ${origin}`));
+  //   }
+  // },
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization", "x-api-key"],
