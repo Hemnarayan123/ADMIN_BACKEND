@@ -104,14 +104,9 @@ module.exports = (method) => {
 
             case "enquiry":
                 return [
-                    check('jobTitle', 'Job title is required.').exists().not().isEmpty().isLength({ min: 2, max: 100 }),
                     check('fullName', 'Full name is required.').exists().not().isEmpty().isLength({ min: 2, max: 100 }),
                     check('email', 'Valid email is required.').exists().not().isEmpty().isEmail().isLength({ min: 5, max: 100 }),
-                    check('phone', 'Phone number is required.').exists().not().isEmpty().isLength({ min: 7, max: 15 }).isNumeric(),
-                    check('service', 'Service is required.').exists().not().isEmpty().isLength({ min: 2, max: 100 }),
-                    check('schedule.date', 'Invalid date format.').optional().isISO8601().toDate(),
-                    check('schedule.time', 'Invalid time format. Use HH:MM.').optional().matches(/^([0-1]\d|2[0-3]):([0-5]\d)$/),
-                    check('schedule.timeZone', 'Time zone is required and should be a valid string.').optional().not().isEmpty().isLength({ min: 1, max: 100 })
+                    check('message', 'Message is required.').exists().not().isEmpty().isLength({ min: 2, max: 100 }),
                 ];
             break;
 

@@ -4,21 +4,14 @@ const { default: mongoose } = require('mongoose');
 const moment = require('moment')
 
 exports.handleEnquiry = async (req, res) => {
-    const { jobTitle, fullName, email, phone, service, schedule } = req.body;
+    const { fullName, email, message } = req.body;
 
     try {
         // Convert scheduleDate to a Date object if provided
         const enquiry = new Enquiry({
-            jobTitle,
             fullName,
             email,
-            phone,
-            service,
-            schedule: {
-                date: schedule.date ? new Date(schedule.date) : null,
-                time: schedule.time || null,
-                timeZone: schedule.timeZone || null
-            },
+            message
         });
         await enquiry.save();
         await sendEnquiryConfirmationEmail(enquiry);
@@ -93,11 +86,9 @@ exports.getEnquiriesFilter = async (req, res) => {
   
             if (query && query !== "") {
                 filters["$or"] = [
-                    { jobTitle: { $regex: new RegExp(query, "i") } },
                     { fullName: { $regex: new RegExp(query, "i") } },
                     { email: { $regex: new RegExp(query, "i") } },
-                    { phone: { $regex: new RegExp(query, "i") } },
-                    { service: { $regex: new RegExp(query, "i") } }
+                    { message: { $regex: new RegExp(query, "i") } }
                 ];
             }
         const total_count = await Enquiry.countDocuments();

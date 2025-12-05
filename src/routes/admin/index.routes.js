@@ -8,14 +8,15 @@ const demoController = require('../../controllers/demoController');
 const HeroController = require('../../controllers/HeroCard.controller')
 const featureKtsController = require('../../controllers/featureKts.controller')
 const UserEnquiryController = require('../../controllers/UserEnquiry.controller')
-
+const { authCheckAdmin } = require('../../middelwares');
 const checkValid = require('../../middelwares/validator');
 const router = require('express').Router()
 const { uploadImage, uploadDoc, uploadXlsx } = require('../../helpers/storage');
+const { showValidationErrors } = require('../../middelwares');
 
 router.get('/get-herocard',HeroController.getHeroCard)
-
-const { showValidationErrors, authCheckAdmin } = require('../../middelwares');
+router.get('/get-featurekits',featureKtsController.getFeatureKits)
+router.post("/add-enquiry", checkValid('enquiry'), showValidationErrors, enquiryController.handleEnquiry);
 // User Auth
 router.post('/login', checkValid('login'), showValidationErrors, authController.login);
 router.post('/send-otp', checkValid('sendOtp'), showValidationErrors, authController.sendotp);
@@ -36,7 +37,6 @@ router.get('/get-request-demo', demoController.getDemos);
 
 
 // Protected Routes..
-router.post("/add-enquiry", checkValid('enquiry'), showValidationErrors, enquiryController.handleEnquiry);
 router.use(authCheckAdmin);
 
 // Admin Protected Routes
