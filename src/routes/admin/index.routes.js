@@ -80,7 +80,7 @@ router.put('/update-featurekits/:id', uploadImage.single('product_image') ,showV
 router.delete('/delete-featurekits/:id',showValidationErrors, featureKtsController.deleteFeatureKits)
 
 // Enquery
-router.get('/get-user_enquery',UserEnquiryController.getUserEnquiry)
+router.get('/get-user_enquery', enquiryController.getEnquiriesFilter)
 router.delete('/delete-user_enquery', UserEnquiryController.deleteUserEnquiry)
 
 // Admin 
